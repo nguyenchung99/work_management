@@ -14,6 +14,8 @@ import com.example.sale.reponsitory.RoleRepository;
 import com.example.sale.reponsitory.UserRepository;
 import com.example.sale.reponsitory.UserRoleRepository;
 import com.example.sale.security.JwtUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -31,6 +33,7 @@ import java.util.Set;
 @RequestMapping(value = "/api/auth")
 public class AuthController {
 
+    Logger logger = LoggerFactory.getLogger(AuthController.class);
     UserRepository userRepository;
 
     RoleRepository roleRepository;
@@ -92,6 +95,7 @@ public class AuthController {
             userRoles.setRoleId(r);
             userRoleRepository.save(userRoles);
         }
+        logger.info("Registered successfully username: {}", user.getUsername());
         return ResponseEntity.ok().body("Register Successfully");
     }
 
