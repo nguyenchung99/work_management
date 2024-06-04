@@ -12,4 +12,18 @@ public class ResponseBase {
         responseBase.body = body;
         return responseBase;
     }
+
+    public static ResponseBase getInternalServerError(){
+        ResponseBase responseBase = new ResponseBase();
+        responseBase.errorCode = 500;
+        responseBase.errorMessage = "Internal Server Error";
+        return responseBase;
+    }
+
+    public static ResponseBase getDuplicateError(){
+        ResponseBase responseBase = new ResponseBase();
+        responseBase.errorCode = 409;
+        responseBase.errorMessage = "Record already exists";
+        return responseBase;
+    }
 }

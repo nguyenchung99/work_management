@@ -10,11 +10,11 @@ import javax.persistence.*;
 public class UserRoles extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "users_id",nullable = false)
+    @JoinColumn(name = "user_id",nullable = false)
     private User userId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "roles_id",nullable = false)
+    @JoinColumn(name = "role_id",nullable = false)
     private Role roleId;
 
     public User getUserId() {
