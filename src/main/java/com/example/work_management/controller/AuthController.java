@@ -1,6 +1,7 @@
 package com.example.work_management.controller;
 
 
+import com.example.work_management.entity.LoginHistory;
 import com.example.work_management.reponsitory.AuthenticationProvider;
 import com.example.work_management.request.UserRequest;
 import com.example.work_management.response.ResponseBase;
@@ -14,6 +15,7 @@ import com.example.work_management.reponsitory.RoleRepository;
 import com.example.work_management.reponsitory.UserRepository;
 import com.example.work_management.reponsitory.UserRoleRepository;
 import com.example.work_management.security.JwtUtils;
+import com.example.work_management.service.LoginHistoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +50,9 @@ public class AuthController {
 
     @Autowired
     AuthenticationProvider authenticationProvider;
+
+    @Autowired
+    LoginHistoryService loginHistoryService;
 
     @Autowired
     JwtUtils jwtUtils;
@@ -105,6 +110,7 @@ public class AuthController {
         String token = jwtUtils.generateToken(user);
         TokenResponse tokenResponse = new TokenResponse();
         tokenResponse.setAcessToken(token);
+        loginHistoryService.create(user);
         return ResponseBase.getSuccess(tokenResponse);
     }
 
