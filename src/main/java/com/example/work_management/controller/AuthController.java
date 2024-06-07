@@ -29,7 +29,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @RestController
-@RequestMapping(value = "/api/auth")
+@RequestMapping(value = "/auth")
 @CrossOrigin(origins = "*")
 public class AuthController {
 
